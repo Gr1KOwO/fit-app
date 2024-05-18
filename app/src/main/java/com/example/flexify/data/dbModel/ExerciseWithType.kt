@@ -11,8 +11,8 @@ import kotlinx.parcelize.Parcelize
 data class ExerciseWithType(
     @Embedded val exercise: Exercise,
     @Relation(
-        parentColumn = "id",  // This should match the primary key of the Exercise entity
-        entityColumn = "id",  // This should match the primary key of the ExerciseType entity
+        parentColumn = "id",
+        entityColumn = "id",
         associateBy = Junction(ExerciseToType::class,
             parentColumn = "exerciseId",
             entityColumn = "exerciseTypeId")

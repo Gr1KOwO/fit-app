@@ -8,8 +8,8 @@ import androidx.room.Relation
 data class TypeWithExercise(
     @Embedded val exerciseType: ExerciseType,
     @Relation(
-        parentColumn = "id",  // This should match the primary key of the ExerciseType entity
-        entityColumn = "id",  // This should match the primary key of the Exercise entity
+        parentColumn = "id",
+        entityColumn = "id",
         associateBy = Junction(ExerciseToType::class,
             parentColumn = "exerciseTypeId",
             entityColumn = "exerciseId")
