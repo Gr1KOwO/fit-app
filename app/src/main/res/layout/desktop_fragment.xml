@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/swipeRefreshLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!-- Приветственное сообщение с именем пользователя -->
+        <TextView
+            android:layout_margin="@dimen/marginSignLit"
+            android:id="@+id/welcomeMessageTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/welcome_message"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/statist_1"
+            style="@style/TextAppearance.Title.H5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/pieChartConsumedFoodForWeightLoss"
+            app:layout_constraintEnd_toEndOf="@+id/pieChartConsumedFoodForWeightLoss"
+            app:layout_constraintStart_toStartOf="@+id/pieChartConsumedFoodForWeightLoss"
+            app:layout_constraintTop_toTopOf="@+id/pieChartConsumedFoodForWeightLoss" />
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/statist_2"
+            style="@style/TextAppearance.Title.H5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/pieChartConsumedFood"
+            app:layout_constraintEnd_toEndOf="@+id/pieChartConsumedFood"
+            app:layout_constraintStart_toStartOf="@+id/pieChartConsumedFood"
+            app:layout_constraintTop_toTopOf="@+id/pieChartConsumedFood" />
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/statist_3"
+            style="@style/TextAppearance.Title.H5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/pieChartConsumedFoodForWeightGain"
+            app:layout_constraintEnd_toEndOf="@+id/pieChartConsumedFoodForWeightGain"
+            app:layout_constraintStart_toStartOf="@+id/pieChartConsumedFoodForWeightGain"
+            app:layout_constraintTop_toTopOf="@+id/pieChartConsumedFoodForWeightGain" />
+
+        <TextView
+            android:id="@+id/fullName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Имя Фамилия"
+            style="@style/TextAppearance.Title.H4"
+            app:layout_constraintEnd_toEndOf="@+id/welcomeMessageTextView"
+            app:layout_constraintStart_toStartOf="@+id/welcomeMessageTextView"
+            app:layout_constraintTop_toBottomOf="@+id/welcomeMessageTextView" />
+
+
+        <!-- Круговая диаграмма для отображения доступных калорий -->
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/pieChartConsumedFood"
+            android:layout_width="90dp"
+            android:layout_height="90dp" />
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/pieChartConsumedFoodForWeightLoss"
+            android:layout_width="90dp"
+            android:layout_height="90dp" />
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/pieChartConsumedFoodForWeightGain"
+            android:layout_width="90dp"
+            android:layout_height="90dp"/>
+        <TextView
+            android:gravity="center"
+            android:id="@+id/TitleWeightLoss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/TitleWeightLoss"
+            style="@style/TextAppearance.Title.H5"/>
+        <TextView
+            android:gravity="center"
+            android:id="@+id/TitleConsumedFood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/TitleConsumedFood"
+            style="@style/TextAppearance.Title.H5"/>
+        <TextView
+            android:gravity="center"
+            android:id="@+id/TitleWeightGain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/TitleWeightGain"
+            style="@style/TextAppearance.Title.H5"/>
+
+        <androidx.constraintlayout.helper.widget.Flow
+            android:id="@+id/flowPieCharts"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="pieChartConsumedFoodForWeightLoss,pieChartConsumedFood,pieChartConsumedFoodForWeightGain"
+            app:flow_horizontalStyle="spread"
+            app:flow_wrapMode="chain"
+            app:layout_constraintBottom_toTopOf="@+id/calendarView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fullName"/>
+
+        <androidx.constraintlayout.helper.widget.Flow
+            android:id="@+id/flowPieChartsTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="TitleWeightLoss,TitleConsumedFood,TitleWeightGain"
+            app:flow_horizontalStyle="spread"
+            app:flow_wrapMode="chain"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/flowPieCharts" />
+
+        <!-- CalendarView -->
+        <CalendarView
+            android:id="@+id/calendarView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/marginSignLit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/flowPieChartsTitle" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginSignLit"
+            android:layout_marginBottom="@dimen/marginSignLit"
+            app:layout_constraintBottom_toTopOf="@+id/totalInMonth"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calendarView" />
+
+        <TextView
+            android:layout_margin="@dimen/marginSignLit"
+            android:id="@+id/totalInMonth"
+            style="@style/TextAppearance.Title.H5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/statMonth"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
+        <!-- BarChartView -->
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/barChart"
+            android:layout_margin="@dimen/marginSign"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/totalInMonth" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

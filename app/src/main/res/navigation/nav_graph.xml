@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.flexify.ui.splash.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_signInFragment"
+            app:destination="@id/signInFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashFragment_to_viewPagerFragment"
+            app:destination="@id/viewPagerFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashFragment_to_mainMenuFragment2"
+            app:popUpTo="@id/splashFragment"
+            app:destination="@id/mainMenuFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.example.flexify.ui.auth.signin.SignInFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_signin" >
+        <action
+            android:id="@+id/action_signInFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_signInFragment_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment"
+            app:popUpTo="@id/signInFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewPagerFragment"
+        android:name="com.example.flexify.ui.boarding.ViewPagerFragment"
+        android:label="fragment_view_pager"
+        tools:layout="@layout/fragment_view_pager" >
+        <action
+            android:id="@+id/action_viewPagerFragment_to_signInFragment"
+            app:destination="@id/signInFragment"
+            app:popUpTo="@id/viewPagerFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.example.flexify.ui.auth.signup.SignUpFragment"
+        android:label="SignUpFragment"
+        tools:layout="@layout/fragment_signup">
+        <action
+            android:id="@+id/action_signUpFragment_to_signUpFragmentPartTwo"
+            app:destination="@id/signUpFragmentPartTwo" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragmentPartTwo"
+        android:name="com.example.flexify.ui.auth.signup.SignUpFragmentPartTwo"
+        android:label="SignUpFragmentPartTwo"
+        tools:layout="@layout/fragment_signup_part_two">
+        <action
+            android:id="@+id/action_signUpFragmentPartTwo_to_successRegistrationFragment"
+            app:destination="@id/successRegistrationFragment"
+           />
+        <argument
+            android:name="fullName"
+            app:argType="string" />
+        <argument
+            android:name="email"
+            app:argType="string" />
+        <argument
+            android:name="password"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/successRegistrationFragment"
+        android:name="com.example.flexify.ui.auth.signup.SuccessRegistrationFragment"
+        android:label="SuccessRegistrationFragment"
+        tools:layout="@layout/fragment_success_registration">
+        <action
+            android:id="@+id/action_successRegistrationFragment_to_signInFragment"
+            app:destination="@id/signInFragment"
+            app:popUpTo="@id/signInFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainMenuFragment"
+        android:name="com.example.flexify.ui.main_menu.MainMenuFragment"
+        android:label="MainMenuFragment"
+        tools:layout="@layout/fragment_main_menu"/>
+    <fragment
+        tools:layout="@layout/fragment_consumed_food"
+        android:id="@+id/fragmentConsumedFood"
+        android:name="com.example.flexify.ui.main_menu.screens.FragmentConsumedFood"
+        android:label="FragmentConsumedFood" />
+    <fragment
+        android:id="@+id/fragmentProfile"
+        android:name="com.example.flexify.ui.profile.FragmentProfile"
+        android:label="FragmentProfile"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_fragmentProfile_to_signInFragment"
+            app:destination="@id/signInFragment"
+            app:popUpTo="@id/fragmentProfile"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentInfo"
+        android:name="com.example.flexify.ui.info.FragmentInfo"
+        android:label="FragmentInfo"
+        tools:layout="@layout/fragment_info">
+        <action
+            android:id="@+id/action_fragmentInfo_to_exercisesFragment"
+            app:destination="@id/exercisesFragment" />
+        <action
+            android:id="@+id/action_fragmentInfo_to_fragmentTypeFood"
+            app:destination="@id/fragmentTypeFood" />
+    </fragment>
+    <fragment
+        android:id="@+id/desktopFragment"
+        android:name="com.example.flexify.ui.main_menu.screens.DesktopFragment"
+        android:label="DesktopFragment"
+        tools:layout="@layout/desktop_fragment"/>
+    <fragment
+        android:id="@+id/dishesFragment"
+        tools:layout="@layout/dishes_fragment"
+        android:name="com.example.flexify.ui.Dishes.DishesFragment"
+        android:label="DishesFragment" />
+    <fragment
+        android:id="@+id/exercisesFragment"
+        android:name="com.example.flexify.ui.info.Exercise.ExercisesFragment"
+        android:label="ExercisesFragment"
+        tools:layout="@layout/dishes_fragment">
+        <action
+            android:id="@+id/action_exercisesFragment_to_exerciseDetailsFragment"
+            app:destination="@id/exerciseDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentTypeFood"
+        android:name="com.example.flexify.ui.info.Food.FragmentTypeFood"
+        android:label="FragmentTypeFood"
+        tools:layout="@layout/dishes_fragment">
+        <action
+            android:id="@+id/action_fragmentTypeFood_to_fragmentFood"
+            app:destination="@id/fragmentFood" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_list_food"
+        android:id="@+id/fragmentFood"
+        android:name="com.example.flexify.ui.info.Food.FragmentFood"
+        android:label="FragmentFood" >
+        <argument
+            android:name="foodTypeId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/exerciseDetailsFragment"
+        android:name="com.example.flexify.ui.info.Exercise.ExerciseDetailsFragment"
+        android:label="ExerciseDetailsFragment"
+        >
+        <argument
+            android:name="exerciseId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_training_layout_group"
+        android:id="@+id/fragmentTraining"
+        android:name="com.example.flexify.ui.main_menu.screens.FragmentTrainingLayoutGroup"
+        android:label="FragmentTrainingLayoutGroup" />
+</navigation>

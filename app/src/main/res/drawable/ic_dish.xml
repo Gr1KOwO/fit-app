@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+    <!-- Белая основа тарелки -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M50,50
+                         m0,-40
+                         a40,40 0 1,0 0,80
+                         a40,40 0 1,0 0,-80
+                         z" />
+
+    <!-- Черная полоса внутри -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M50,50
+                         m0,-30
+                         a30,30 0 1,0 0,60
+                         a30,30 0 1,0 0,-60
+                         z" />
+
+    <!-- Белый внутренний круг -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M50,50
+                         m0,-25
+                         a25,25 0 1,0 0,50
+                         a25,25 0 1,0 0,-50
+                         z" />
+</vector>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/marginSign">
+
+    <ImageView
+        android:layout_marginTop="@dimen/marginSign"
+        android:id="@+id/img"
+        android:layout_width="277.56dp"
+        android:layout_height="304dp"
+        android:src="@drawable/success_registration_img"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:layout_marginTop="@dimen/marginSignMin"
+        style="@style/TextAppearance.Title.H4"
+        android:id="@+id/Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img"
+        android:text="@string/successRegTitle"/>
+
+    <TextView
+        android:layout_marginTop="@dimen/marginSignLit"
+        style="@style/TextAppearance.Subtitle.SmallText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title"
+        android:text="@string/subSuccessRegTitle"
+        android:gravity="center"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnToSignIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/rounded_btn"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:text="@string/successRegOk"
+        android:padding="12dp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

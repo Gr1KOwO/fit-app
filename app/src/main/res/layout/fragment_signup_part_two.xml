@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="295dp"
+        android:layout_height="280dp"
+        android:src="@drawable/complete_profile_imp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:layout_marginTop="@dimen/marginSignMin"
+        android:id="@+id/titleComplete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/titleComplete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        style="@style/TextAppearance.Title.H4"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/subtitleComplete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleComplete"
+        android:text="@string/subtitleComplete"
+        android:textColor="@color/subTextColor"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_marginTop="12dp"
+        android:id="@+id/textInputLayout"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/marginSign"
+        android:layout_marginEnd="@dimen/marginSign"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/subtitleComplete"
+        app:startIconTint="@color/black"
+        app:startIconDrawable="@drawable/ic_2user">
+        <AutoCompleteTextView
+            android:background="@drawable/rounded"
+            android:hint="@string/gender"
+            android:layout_weight="1"
+            android:id="@+id/autoComplete"
+            android:inputType="none"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_marginTop="12dp"
+        android:id="@+id/ageLayout"
+        android:layout_marginStart="@dimen/marginSign"
+        android:layout_marginEnd="@dimen/marginSign"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+        android:hint="@string/age">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/ageET"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="number"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/weightLayout"
+        android:layout_marginTop="12dp"
+        android:layout_width="252dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/weightLayout"
+        android:layout_marginStart="@dimen/marginSign"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ageLayout">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/weightET"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded"
+            android:inputType="number|numberDecimal" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/textViewWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/back_kg_cm"
+        android:padding="12dp"
+        android:text="@string/weight"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/weightLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/weightLayout"
+        app:layout_constraintTop_toBottomOf="@+id/ageLayout"
+        app:layout_constraintHorizontal_bias="0.58"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_marginTop="12dp"
+        android:id="@+id/heightLayout"
+        android:layout_width="252dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/marginSign"
+        android:hint="@string/heightLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weightLayout">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/heightET"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded"
+            android:inputType="number|numberDecimal" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/textViewHeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/back_kg_cm"
+        android:padding="12dp"
+        android:text="@string/height"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/heightLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/heightLayout"
+        app:layout_constraintTop_toBottomOf="@+id/weightLayout"
+        app:layout_constraintHorizontal_bias="0.58"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnFinishReg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/rounded_btn"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:text="@string/finishReg"
+        android:padding="12dp"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@android:style/Widget.Material.ProgressBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="2dp"
+        android:indeterminateTint="@color/white"
+        android:indeterminateTintMode="src_in"
+        android:visibility="gone"
+        android:paddingStart="@dimen/marginSignMin"
+        android:paddingEnd="@dimen/marginSignMin"
+        app:layout_constraintBottom_toBottomOf="@+id/btnFinishReg"
+        app:layout_constraintEnd_toEndOf="@+id/btnFinishReg"
+        app:layout_constraintStart_toStartOf="@+id/btnFinishReg"
+        app:layout_constraintTop_toTopOf="@+id/btnFinishReg" />
+</androidx.constraintlayout.widget.ConstraintLayout>

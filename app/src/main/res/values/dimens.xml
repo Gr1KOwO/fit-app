@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="titleText">36sp</dimen>
+    <dimen name="subTitleText">18sp</dimen>
+    <dimen name="titleLastCharacter">50sp</dimen>
+    <dimen name="titleTextH1">24sp</dimen>
+    <dimen name="marginSign">32dp</dimen>
+    <dimen name="marginSignMin">24dp</dimen>
+    <dimen name="marginSignLit">12dp</dimen>
+    <dimen name="titleTextH4">20sp</dimen>
+    <dimen name="textPadding">14dp</dimen>
+    <dimen name="littleText">12sp</dimen>
+</resources>

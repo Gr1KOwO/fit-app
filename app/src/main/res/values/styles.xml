@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TextAppearance.Body.Medium" parent="TextAppearance">
+
+    </style>
+    <style name="TextAppearance.Subtitle" parent="TextAppearance">
+        <item name="android:textColor">@color/subTextColor</item>
+        <item name="android:textSize">@dimen/subTitleText</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="TextAppearance.Title" parent="TextAppearance">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">@dimen/titleText</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="TextAppearance.Title.H1" parent="TextAppearance">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">@dimen/titleTextH1</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="TextAppearance.Title.H4" parent="TextAppearance">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">@dimen/titleTextH4</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="TextAppearance.Title.H5" parent = "TextAppearance.Title.H4">
+        <item name="android:textSize">@dimen/littleText</item>
+    </style>
+    <style name="TextAppearance.Subtitle.SmallText" parent="TextAppearance.Subtitle">
+        <item name="android:textSize">@dimen/littleText</item>
+    </style>
+    <style name="TextAppearance" parent="android:TextAppearance" />
+    <style name="Theme.Cowboys.ShapeAppearance" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+    <style name="Widget.App.Snackbar.Error" parent="Widget.Material3.Snackbar">
+        <item name="backgroundTint">@color/error</item>
+        <item name="shapeAppearance">@style/Theme.Cowboys.ShapeAppearance</item>
+    </style>
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="background">@color/white</color>
+    <color name="backgroundNightFirstPart">#92A3FD</color>
+    <color name="backgroundNightSecondPart">#9DCEFF</color>
+    <color name="subTextColor">#7B6F72</color>
+    <color name="colorPrimary">@color/black</color>
+    <color name="newColorTitle_Y_secondPArt">#CC8FED</color>
+    <color name="nextText">@color/backgroundNightFirstPart</color>
+    <color name="grey">#F1F1F1</color>
+    <color name="purple">#EEA4CE</color>
+    <color name="purple_second">#C58BF2</color>
+    <color name="error">#FF0000</color>
+
+    <color name="selected_chip_color">@color/backgroundNightSecondPart</color>
+    <color name="unselected_chip_color">@color/grey</color>
+</resources>

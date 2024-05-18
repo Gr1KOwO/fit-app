@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_training"
+    app:startDestination="@id/fragmentTraining">
+    <fragment
+        android:id="@+id/fragmentTraining"
+        android:name="com.example.flexify.ui.main_menu.screens.FragmentTraining"
+        android:label="FragmentTraining"
+        tools:layout="@layout/training_fragment">
+        <action
+
+            android:id="@+id/action_fragmentTraining_to_workoutFragment"
+            app:destination="@id/workoutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/workoutFragment"
+        android:name="com.example.flexify.ui.main_menu.screens.WorkoutFragment"
+        android:label="WorkoutFragment"
+        tools:layout="@layout/fragment_workout">
+        <argument
+            android:name="workout"
+            app:argType="com.example.flexify.data.dbModel.ExerciseInWorkoutEntity[]" />
+        <action
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/workoutFragment"
+            android:id="@+id/action_workoutFragment_to_fragmentCongratulations"
+            app:destination="@id/fragmentCongratulations" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentCongratulations"
+        android:name="com.example.flexify.ui.main_menu.screens.FragmentCongratulations"
+        android:label="FragmentCongratulations"
+        tools:layout="@layout/fragment_congratulations">
+        <action
+            android:id="@+id/action_fragmentCongratulations_to_fragmentTraining"
+            app:destination="@id/fragmentTraining"
+            app:popUpTo="@id/fragmentCongratulations"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>
