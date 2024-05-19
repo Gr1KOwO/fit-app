@@ -158,6 +158,7 @@ class WorkoutFragment : Fragment() {
             @RequiresApi(Build.VERSION_CODES.O)
             override fun onFinish() {
                 startExercise()
+                binding.timerTextView.visibility = View.GONE
             }
         }.start()
     }

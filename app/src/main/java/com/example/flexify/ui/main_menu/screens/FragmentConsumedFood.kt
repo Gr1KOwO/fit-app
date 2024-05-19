@@ -71,7 +71,7 @@ class FragmentConsumedFood : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Set up RecyclerView
+
         consumedFoodAdapter = ConsumedFoodAdapter(
             onEditClick = { consumedFoodEntity -> editConsumedFood(consumedFoodEntity) },
             onDeleteClick = { consumedFoodEntity -> deleteConsumedFood(consumedFoodEntity) },
@@ -83,14 +83,18 @@ class FragmentConsumedFood : Fragment() {
             adapter = consumedFoodAdapter
         }
 
-        // Handle adding consumed food
+
         binding.addButton.setOnClickListener {
             val selectedDish = binding.dishSpinner.selectedItem as? Dish
             val selectedFood = binding.foodSpinner.selectedItem as? Food
             val quantity = binding.quantityEditText.text.toString().toIntOrNull() ?: 0
 
             if (selectedDish == null && selectedFood == null) {
-                Toast.makeText(requireContext(), "Please select a dish or food", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Выберите пожалуйста блюдо или еду", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if(quantity<=0){
+                Toast.makeText(requireContext(), "Введите количество больше 0", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -101,6 +105,10 @@ class FragmentConsumedFood : Fragment() {
                 quantity,
                 calories
             )
+
+            binding.quantityEditText.text.clear()
+            binding.dishSpinner.setSelection(0)
+            binding.foodSpinner.setSelection(0)
         }
     }
 

@@ -1,3 +1,4 @@
+// WorkoutViewModel
 package com.example.flexify.ui.main_menu.screens
 
 import android.os.Build
@@ -64,7 +65,7 @@ class WorkoutViewModel @Inject constructor(
     @RequiresApi(Build.VERSION_CODES.O)
     private fun calculateAndSaveCalories() {
         val totalCaloriesBurned = _workout.value?.filter { it.isCompleted }
-            ?.sumOf { (it.met * 3.5 * 70 / 200 * ((_totalElapsedTime.value ?: 0) / 60))/1000.0 } //Примерная формула оасчёт потраченных калорий
+            ?.sumOf { (it.met * 3.5 * 70 / 200 * ((_totalElapsedTime.value ?: 0) / 60)) / 1000.0 } // Примерная формула расчета потраченных калорий
 
         viewModelScope.launch {
             statisticsViewModel.updateCaloriesSpent(totalCaloriesBurned?.toFloat() ?: 0f)
@@ -72,3 +73,4 @@ class WorkoutViewModel @Inject constructor(
         }
     }
 }
+

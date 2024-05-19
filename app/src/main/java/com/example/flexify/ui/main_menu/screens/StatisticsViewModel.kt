@@ -1,3 +1,4 @@
+// StatisticsViewModel
 package com.example.flexify.ui.main_menu.screens
 
 import android.os.Build
@@ -38,6 +39,9 @@ class StatisticsViewModel @Inject constructor(
 
     private val _caloriesForMaintenance = MutableLiveData<Float>()
     val caloriesForMaintenance: LiveData<Float> get() = _caloriesForMaintenance
+
+    private val _statisticsUpdated = MutableLiveData<Boolean>()
+    val statisticsUpdated: LiveData<Boolean> get() = _statisticsUpdated
 
     private var isTodayStatisticChecked = false
     private lateinit var userWithStatistics: UsersWithStatistics
@@ -173,6 +177,7 @@ class StatisticsViewModel @Inject constructor(
             viewModelScope.launch {
                 menuUseCase.updateStatistic(updatedStatistic)
                 refreshStatistics()
+                _statisticsUpdated.postValue(true)
             }
         }
     }
@@ -187,6 +192,7 @@ class StatisticsViewModel @Inject constructor(
             viewModelScope.launch {
                 menuUseCase.updateStatistic(updatedStatistic)
                 refreshStatistics()
+                _statisticsUpdated.postValue(true)
             }
         }
     }
@@ -201,6 +207,7 @@ class StatisticsViewModel @Inject constructor(
             viewModelScope.launch {
                 menuUseCase.updateStatistic(updatedStatistic)
                 refreshStatistics()
+                _statisticsUpdated.postValue(true)
             }
         }
     }
@@ -209,3 +216,4 @@ class StatisticsViewModel @Inject constructor(
         menuUseCase.saveStatistics(list)
     }
 }
+

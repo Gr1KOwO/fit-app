@@ -1,3 +1,4 @@
+// ConsumedViewModel
 package com.example.flexify.ui.main_menu.screens
 
 import android.os.Build
@@ -15,6 +16,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.time.LocalDate
 import javax.inject.Inject
+
 
 @RequiresApi(Build.VERSION_CODES.O)
 class ConsumedViewModel @Inject constructor(
@@ -43,6 +45,10 @@ class ConsumedViewModel @Inject constructor(
             }
         }
         loadDishesAndFoods()
+
+        statisticsViewModel.statisticsUpdated.observeForever {
+            loadConsumedFoodForToday()
+        }
     }
 
     private fun loadDishesAndFoods() {
@@ -120,7 +126,6 @@ class ConsumedViewModel @Inject constructor(
 
     private fun updateStatistics() {
         val totalCaloriesConsumed = _consumedFood.value?.sumOf { it.calories.toDouble() }?.toFloat() ?: 0f
-        statisticsViewModel.resetCaloriesConsumed() // Сбросить калории, чтобы пересчитать их заново
         statisticsViewModel.updateCaloriesConsumed(totalCaloriesConsumed)
     }
 
@@ -132,3 +137,4 @@ class ConsumedViewModel @Inject constructor(
         return _dishes.value?.find { it.id == id }?.name
     }
 }
+

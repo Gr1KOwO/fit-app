@@ -65,12 +65,12 @@
     <string name="calories_format">Калории: %1$.2f ккал</string>
     <string name="get_recipe">Получить рецепт</string>
 
-    <string name="remaining_time_format">Remaining Time: %1$d sec</string>
-    <string name="rest_time_format">Rest Time: %1$d sec</string>
+    <string name="remaining_time_format">Текущее время: %1$d sec</string>
+    <string name="rest_time_format">Время отдыха: %1$d sec</string>
     <string name="workout_complete">Workout Complete!</string>
-    <string name="sets_reps_format">Sets: %1$d, Reps: %2$d</string>
-    <string name="weight_format">Weight: %1$d kg</string>
-    <string name="elapsed_time_format">Elapsed Time: %1$s</string>
+    <string name="sets_reps_format">Подходы: %1$d, Повторения: %2$d</string>
+    <string name="weight_format">Вес: %1$d kg</string>
+    <string name="elapsed_time_format">Затраченное время: %1$s</string>
     <string name="congratulation">Поздравляем</string>
     <string name="backToHome">Завершить</string>
     <string name="workout">Тренировка</string>
