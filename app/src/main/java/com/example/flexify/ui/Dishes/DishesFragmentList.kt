@@ -12,9 +12,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.flexify.R
 import com.example.flexify.databinding.FragmentExerciseDetailsBinding
 import com.example.flexify.databinding.FragmentListTypeExBinding
 import com.example.flexify.ui.info.Exercise.ExercisesFragmentDirections
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
@@ -74,5 +76,17 @@ class DishesFragmentList: Fragment() {
                 return false
             }
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val bottomNavigation = activity?.findViewById<BottomNavigationView>(R.id.bottom_nav)
+        bottomNavigation?.visibility = View.VISIBLE
+    }
+
+    override fun onStop() {
+        super.onStop()
+        val bottomNavigation = activity?.findViewById<BottomNavigationView>(R.id.bottom_nav)
+        bottomNavigation?.visibility = View.GONE
     }
 }

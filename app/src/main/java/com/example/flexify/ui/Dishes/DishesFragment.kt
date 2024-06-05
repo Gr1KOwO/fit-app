@@ -51,11 +51,6 @@ class DishesFragment:Fragment() {
         viewModel.loadDishDetails(args.dishId)
         return binding.root
     }
-    override fun onResume() {
-        super.onResume()
-        val bottomNavigation = activity?.findViewById<BottomNavigationView>(R.id.bottom_nav)
-        bottomNavigation?.visibility = View.VISIBLE
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
