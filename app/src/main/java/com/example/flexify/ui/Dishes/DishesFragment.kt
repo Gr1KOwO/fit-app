@@ -7,11 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.MediaController
+import android.widget.Toast
 import androidx.annotation.OptIn
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.createViewModelLazy
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavArgs
+import androidx.navigation.fragment.navArgs
 import com.example.flexify.R
 import com.example.flexify.data.dbModel.Dish
 import com.example.flexify.databinding.DishesFragmentBinding
@@ -24,12 +27,13 @@ import javax.inject.Inject
 class DishesFragment:Fragment() {
     private lateinit var binding:DishesFragmentBinding
     private var youTubePlayer: YouTubePlayer? = null
+    private val args:DishesFragmentArgs by navArgs()
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private val viewModel by createViewModelLazy(
-        DishesViewModel::class,
+        DishDetailsViewModel::class,
         { this.viewModelStore },
         factoryProducer = { viewModelFactory })
 
@@ -44,6 +48,7 @@ class DishesFragment:Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DishesFragmentBinding.inflate(inflater,container,false)
+        viewModel.loadDishDetails(args.dishId)
         return binding.root
     }
     override fun onResume() {
@@ -54,27 +59,18 @@ class DishesFragment:Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.generateRecipeButton.setOnClickListener {
-            viewModel.getRandomDish()
-        }
-
-        binding.generateNewRecipeButton.setOnClickListener {
-            resetPlayer()
-            viewModel.getRandomDish()
-        }
-
-        viewModel.currentDish.observe(viewLifecycleOwner, Observer { dish ->
+        viewModel.dish.observe(viewLifecycleOwner, Observer { dish ->
             if (dish != null) {
                 showRecipe(dish)
-            } else {
-                showGenerateButton()
+            }
+            else{
+                Toast.makeText(context,"Error",Toast.LENGTH_SHORT).show()
             }
         })
     }
 
     private fun showRecipe(dish: Dish) {
-        binding.generateRecipeButton.visibility = View.GONE
+
         binding.recipeLayout.visibility = View.VISIBLE
         binding.recipeNameTextView.text = dish.name
         binding.recipeDescriptionTextView.text = dish.description
@@ -89,10 +85,6 @@ class DishesFragment:Fragment() {
         }
     }
 
-    private fun showGenerateButton() {
-        binding.generateRecipeButton.visibility = View.VISIBLE
-        binding.recipeLayout.visibility = View.GONE
-    }
 
     private fun initializePlayer(videoUrl: String) {
         binding.youtubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
@@ -104,14 +96,6 @@ class DishesFragment:Fragment() {
                 }
             }
         })
-    }
-
-    private fun resetPlayer() {
-        youTubePlayer?.let {
-            it.pause()
-            it.seekTo(0f)
-            it.cueVideo("", 0f)
-        }
     }
 
     private fun extractYouTubeVideoId(url: String): String? {

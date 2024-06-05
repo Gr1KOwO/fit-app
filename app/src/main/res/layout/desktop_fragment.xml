@@ -29,39 +29,6 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
-            android:gravity="center"
-            android:id="@+id/statist_1"
-            style="@style/TextAppearance.Title.H5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/pieChartConsumedFoodForWeightLoss"
-            app:layout_constraintEnd_toEndOf="@+id/pieChartConsumedFoodForWeightLoss"
-            app:layout_constraintStart_toStartOf="@+id/pieChartConsumedFoodForWeightLoss"
-            app:layout_constraintTop_toTopOf="@+id/pieChartConsumedFoodForWeightLoss" />
-
-        <TextView
-            android:gravity="center"
-            android:id="@+id/statist_2"
-            style="@style/TextAppearance.Title.H5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/pieChartConsumedFood"
-            app:layout_constraintEnd_toEndOf="@+id/pieChartConsumedFood"
-            app:layout_constraintStart_toStartOf="@+id/pieChartConsumedFood"
-            app:layout_constraintTop_toTopOf="@+id/pieChartConsumedFood" />
-
-        <TextView
-            android:gravity="center"
-            android:id="@+id/statist_3"
-            style="@style/TextAppearance.Title.H5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/pieChartConsumedFoodForWeightGain"
-            app:layout_constraintEnd_toEndOf="@+id/pieChartConsumedFoodForWeightGain"
-            app:layout_constraintStart_toStartOf="@+id/pieChartConsumedFoodForWeightGain"
-            app:layout_constraintTop_toTopOf="@+id/pieChartConsumedFoodForWeightGain" />
-
-        <TextView
             android:id="@+id/fullName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -163,8 +130,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider" />
         <!-- BarChartView -->
-        <com.github.mikephil.charting.charts.BarChart
-            android:id="@+id/barChart"
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/lineChart"
             android:layout_margin="@dimen/marginSign"
             android:layout_width="match_parent"
             android:layout_height="500dp"

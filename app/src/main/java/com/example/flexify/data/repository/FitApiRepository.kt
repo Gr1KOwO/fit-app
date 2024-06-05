@@ -99,6 +99,10 @@ class FitApiRepository@Inject constructor(
         fitDB.dishDao().insertDishes(list)
     }
 
+    suspend fun getDishById(id:Int):Dish {
+        return fitDB.dishDao().getDishById(id)
+    }
+
     //ExercisesType
     suspend fun getExercisesTypesApi():List<ExerciseType>{
         return fitApi.getExercisesTypes()

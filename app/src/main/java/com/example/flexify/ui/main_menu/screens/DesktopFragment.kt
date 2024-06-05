@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,19 +14,18 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.createViewModelLazy
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
+import com.example.flexify.R
 import com.example.flexify.data.dbModel.Statistics
 import com.example.flexify.databinding.DesktopFragmentBinding
 import com.github.mikephil.charting.charts.PieChart
-import com.github.mikephil.charting.data.BarData
-import com.github.mikephil.charting.data.BarDataSet
-import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.utils.ColorTemplate
 import dagger.android.support.AndroidSupportInjection
-import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
@@ -58,14 +56,13 @@ class DesktopFragment : Fragment() {
             user?.let {
                 binding.fullName.text = it.fullName
                 setupPieCharts()
-                setupBarChart()
+                setupLineChart()
             }
         })
         statisticsViewModel.error.observe(viewLifecycleOwner, Observer { error ->
             Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
         })
 
-        // Настройка SwipeRefreshLayout
         binding.swipeRefreshLayout.setOnRefreshListener {
             refreshData()
         }
@@ -79,10 +76,10 @@ class DesktopFragment : Fragment() {
 
         statisticsViewModel.statistics.observe(viewLifecycleOwner, Observer { statistics ->
             statistics?.let {
-                updatePieCharts(LocalDate.now(), it) // Обновляем PieChart с данными за сегодня
-                updateBarChart(it)
+                updatePieCharts(LocalDate.now(), it)
+                updateLineChart(it)
             }
-            binding.swipeRefreshLayout.isRefreshing = false // Остановить анимацию обновления
+            binding.swipeRefreshLayout.isRefreshing = false
         })
 
         binding.calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
@@ -108,7 +105,7 @@ class DesktopFragment : Fragment() {
     private fun onMonthSelected(date: LocalDate) {
         val statistics = statisticsViewModel.statistics.value ?: return
         val selectedMonthStats = statistics.filter { it.date.month == date.month && it.date.year == date.year }
-        updateBarChart(selectedMonthStats)
+        updateLineChart(selectedMonthStats)
     }
 
     private fun setupPieCharts() {
@@ -134,10 +131,11 @@ class DesktopFragment : Fragment() {
         pieChart.addView(titleView)
     }
 
-    private fun setupBarChart() {
-        binding.barChart.apply {
+    private fun setupLineChart() {
+        binding.lineChart.apply {
             description.isEnabled = false
-            setFitBars(true)
+            setTouchEnabled(true)
+            setPinchZoom(true)
             xAxis.granularity = 1f
             axisLeft.granularity = 1f
             axisRight.isEnabled = false
@@ -148,12 +146,18 @@ class DesktopFragment : Fragment() {
     private fun updatePieCharts(date: LocalDate, statistics: List<Statistics>) {
         val selectedDateStats = statistics.find { it.date == date } ?: Statistics(0, date, 0, 0f, 0f)
 
-        updatePieChart(binding.pieChartConsumedFood, selectedDateStats.caloriesConsumed, statisticsViewModel.caloriesForMaintenance.value ?: 0f)
-        updatePieChart(binding.pieChartConsumedFoodForWeightLoss, selectedDateStats.caloriesConsumed, statisticsViewModel.caloriesForWeightLoss.value ?: 0f)
-        updatePieChart(binding.pieChartConsumedFoodForWeightGain, selectedDateStats.caloriesConsumed, statisticsViewModel.caloriesForWeightGain.value ?: 0f)
+        updatePieChart(binding.pieChartConsumedFood, selectedDateStats.caloriesConsumed, statisticsViewModel.caloriesForMaintenance.value ?: 0f, binding.TitleConsumedFood, R.string.TitleConsumedFood)
+        updatePieChart(binding.pieChartConsumedFoodForWeightLoss, selectedDateStats.caloriesConsumed, statisticsViewModel.caloriesForWeightLoss.value ?: 0f, binding.TitleWeightLoss, R.string.TitleWeightLoss)
+        updatePieChart(binding.pieChartConsumedFoodForWeightGain, selectedDateStats.caloriesConsumed, statisticsViewModel.caloriesForWeightGain.value ?: 0f, binding.TitleWeightGain, R.string.TitleWeightGain)
     }
 
-    private fun updatePieChart(pieChart: PieChart, totalConsumed: Float, goal: Float) {
+    private fun updatePieChart(
+        pieChart: PieChart,
+        totalConsumed: Float,
+        goal: Float,
+        textView: TextView,
+        textResId: Int
+    ) {
         val entries = ArrayList<PieEntry>()
         val remaining = goal - totalConsumed
         entries.add(PieEntry(totalConsumed, "Consumed"))
@@ -163,17 +167,19 @@ class DesktopFragment : Fragment() {
 
         val dataSet = PieDataSet(entries, "")
         dataSet.colors = ColorTemplate.MATERIAL_COLORS.toList()
-        dataSet.valueTextColor = Color.TRANSPARENT // Hide value text
+        dataSet.valueTextColor = Color.TRANSPARENT
         dataSet.valueTextSize = 12f
 
         val data = PieData(dataSet)
         pieChart.data = data
         pieChart.invalidate()
+        textView.text = resources.getString(textResId, totalConsumed, goal)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun updateBarChart(statistics: List<Statistics>) {
-        val entries = ArrayList<BarEntry>()
+    private fun updateLineChart(statistics: List<Statistics>) {
+        val consumedEntries = ArrayList<Entry>()
+        val spentEntries = ArrayList<Entry>()
         val formatter = DateTimeFormatter.ofPattern("dd.MM")
         val today = LocalDate.now()
         val daysInMonth = today.lengthOfMonth()
@@ -181,20 +187,24 @@ class DesktopFragment : Fragment() {
         for (day in 1..daysInMonth) {
             val date = LocalDate.of(today.year, today.month, day)
             val statsForDay = statistics.find { it.date == date } ?: Statistics(0, date, 0, 0f, 0f)
-            entries.add(BarEntry(day.toFloat(), statsForDay.caloriesSpent))
-            entries.add(BarEntry(day.toFloat() + 0.5f, statsForDay.caloriesConsumed))
+            consumedEntries.add(Entry(day.toFloat(), statsForDay.caloriesConsumed))
+            spentEntries.add(Entry(day.toFloat(), statsForDay.caloriesSpent))
         }
 
-        val dataSet = BarDataSet(entries, "Calories")
-        dataSet.colors = ColorTemplate.MATERIAL_COLORS.toList()
-        dataSet.valueTextColor = Color.BLACK
-        dataSet.valueTextSize = 12f
+        val consumedDataSet = LineDataSet(consumedEntries, "Consumed Calories")
+        consumedDataSet.color = ColorTemplate.MATERIAL_COLORS[0]
+        consumedDataSet.valueTextColor = Color.BLACK
+        consumedDataSet.valueTextSize = 12f
 
-        val data = BarData(dataSet)
-        data.barWidth = 0.4f
+        val spentDataSet = LineDataSet(spentEntries, "Spent Calories")
+        spentDataSet.color = ColorTemplate.MATERIAL_COLORS[1]
+        spentDataSet.valueTextColor = Color.BLACK
+        spentDataSet.valueTextSize = 12f
 
-        binding.barChart.data = data
-        binding.barChart.invalidate()
+        val data = LineData(consumedDataSet, spentDataSet)
+
+        binding.lineChart.data = data
+        binding.lineChart.invalidate()
     }
 
     private fun refreshData() {

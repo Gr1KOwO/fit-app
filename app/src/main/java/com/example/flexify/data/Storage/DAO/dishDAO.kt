@@ -21,4 +21,7 @@ interface dishDAO {
 
     @Delete
     suspend fun delDish(dish: Dish)
+
+    @Query("Select * From Dish where id = :id")
+    suspend fun getDishById(id:Int):Dish
 }

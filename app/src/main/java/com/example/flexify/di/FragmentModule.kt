@@ -2,6 +2,7 @@ package com.example.flexify.di
 
 
 import com.example.flexify.ui.Dishes.DishesFragment
+import com.example.flexify.ui.Dishes.DishesFragmentList
 import com.example.flexify.ui.auth.signin.SignInFragment
 import com.example.flexify.ui.auth.signup.SignUpFragment
 import com.example.flexify.ui.auth.signup.SignUpFragmentPartTwo
@@ -75,4 +76,6 @@ abstract class FragmentModule {
     abstract fun fragmentTrainingLayoutGroup():FragmentTrainingLayoutGroup
     @ContributesAndroidInjector
     abstract fun fragmentCongratulations(): FragmentCongratulations
+    @ContributesAndroidInjector
+    abstract fun DishesFragmentList(): DishesFragmentList
 }

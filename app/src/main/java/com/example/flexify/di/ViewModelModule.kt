@@ -6,6 +6,7 @@ import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.flexify.ui.Dishes.DishDetailsViewModel
 import com.example.flexify.ui.Dishes.DishesViewModel
 import com.example.flexify.ui.auth.signin.SignInViewModel
 import com.example.flexify.ui.auth.signup.SignUpViewModel
@@ -99,4 +100,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(WorkoutViewModel::class)
     abstract fun workoutViewModel(workoutViewModel: WorkoutViewModel):ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(DishDetailsViewModel::class)
+    abstract fun dishDetailsViewModel(dishDetailsViewModel:DishDetailsViewModel):ViewModel
 }

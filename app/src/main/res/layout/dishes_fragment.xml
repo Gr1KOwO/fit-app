@@ -4,24 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Кнопка для генерации рецепта -->
-    <Button
-        android:id="@+id/generateRecipeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/get_recipe"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <!-- Layout для отображения рецепта -->
     <LinearLayout
         android:id="@+id/recipeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -75,14 +63,5 @@
                     android:layout_height="200dp" />
             </FrameLayout>
         </com.google.android.material.card.MaterialCardView>
-
-        <!-- Кнопка для генерации нового рецепта -->
-        <Button
-            android:id="@+id/generateNewRecipeButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/get_recipe"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

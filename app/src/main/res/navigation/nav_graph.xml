@@ -129,10 +129,14 @@
         android:label="DesktopFragment"
         tools:layout="@layout/desktop_fragment"/>
     <fragment
-        android:id="@+id/dishesFragment"
+        android:id="@+id/dishesFragmentDetails"
         tools:layout="@layout/dishes_fragment"
         android:name="com.example.flexify.ui.Dishes.DishesFragment"
-        android:label="DishesFragment" />
+        android:label="DishesFragment" >
+        <argument
+            android:name="dishId"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/exercisesFragment"
         android:name="com.example.flexify.ui.info.Exercise.ExercisesFragment"
@@ -174,4 +178,14 @@
         android:id="@+id/fragmentTraining"
         android:name="com.example.flexify.ui.main_menu.screens.FragmentTrainingLayoutGroup"
         android:label="FragmentTrainingLayoutGroup" />
+    <fragment
+
+        android:id="@+id/dishesFragment"
+        android:name="com.example.flexify.ui.Dishes.DishesFragmentList"
+        android:label="DishesFragmentList"
+        tools:layout="@layout/fragment_list_type_ex">
+        <action
+            android:id="@+id/action_dishesFragment_to_dishesFragmentDetails"
+            app:destination="@id/dishesFragmentDetails" />
+    </fragment>
 </navigation>

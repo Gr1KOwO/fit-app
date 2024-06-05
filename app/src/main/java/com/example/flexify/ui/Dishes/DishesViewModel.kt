@@ -28,20 +28,14 @@ class DishesViewModel @Inject constructor(
                 val dishList = dishesUseCase.getDishes()
                 _dishes.value = dishList
             } catch (e: Exception) {
-                // Handle error
                 e.message
             }
         }
     }
 
-    fun getRandomDish() {
-        val dishList = _dishes.value
-        if (!dishList.isNullOrEmpty()) {
-            _currentDish.value = dishList.random()
+    fun searchExercises(query: String) {
+        viewModelScope.launch {
+            _dishes.value = dishesUseCase.searchExercises(query)
         }
-    }
-
-    fun clearCurrentDish() {
-        _currentDish.value = null
     }
 }

@@ -59,9 +59,9 @@
     <string name="getTraining">Получить тренировку</string>
     <string name="dishes">Блюда</string>
 
-    <string name="TitleWeightLoss">Статистика каллорий\nдля похудания</string>
-    <string name="TitleConsumedFood">Статистика каллорий\nдля\nподдержания веса</string>
-    <string name="TitleWeightGain">Статистика каллорий\nдля набора веса</string>
+    <string name="TitleWeightLoss">Статистика каллорий\nдля похудания\n%1$.2f/%2$.2f</string>
+    <string name="TitleConsumedFood">Статистика каллорий\nдля\nподдержания веса\n%1$.2f/%2$.2f</string>
+    <string name="TitleWeightGain">Статистика каллорий\nдля набора веса\n%1$.2f/%2$.2f</string>
     <string name="calories_format">Калории: %1$.2f ккал</string>
     <string name="get_recipe">Получить рецепт</string>
 
